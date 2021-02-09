@@ -7,7 +7,7 @@ const TodosList = (props) => {
   return(
     <div>
         <table>
-            
+        {/* showing todo list  */}
         {props.todoslist.map((data,i)=>{
             return <tr key={i} >
                <td className="p-3"> {data} </td> <td> <button className="btn btn-danger btn-sm" onClick={()=> props.deleteTodo(i)}>Delete</button></td> </tr>
@@ -19,12 +19,14 @@ const TodosList = (props) => {
 
   let mapStateToProps = state =>{
       return{
+          //getting todo list from store
           todoslist : state.Todo.todos
       }
   }
 
   let mapDispatchToProps = dispatch =>{
     return {
+        // send action to delete todo
         deleteTodo : (index)=>dispatch(todoActions.deleteTodo(index))
     }
 }

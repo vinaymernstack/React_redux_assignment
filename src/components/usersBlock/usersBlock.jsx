@@ -4,6 +4,7 @@ import UsersActions from '../../redux/actions/usersActions'
 
 
 const UsersBlock = (props) => {
+       //    sending action for getting data through useDispatch method
     const dispatchAction = useDispatch()
   return(
     <div>
@@ -22,7 +23,9 @@ const UsersBlock = (props) => {
                 </tr>
             </thead>
             <tbody>
+                {/* showing users data */}
             {
+                  // getting user data by useSelector method
                 useSelector(state=>state.Users.users).map(data=>{
                     return <tr>
                         <td>{data.id}</td><td>{data.name}</td>
@@ -39,6 +42,7 @@ const UsersBlock = (props) => {
   }
 
 let mapStateToProps = state =>{
+    // getting user data from store
     return{
         usersData : state.Users.users,
         error : state.Users.error,
@@ -48,6 +52,7 @@ let mapStateToProps = state =>{
 
 let mapDispatchToProps = dispatch =>{
   return {
+    //    sending action for getting data
       fetchUserData : ()=>dispatch(UsersActions.fetchUsers())
   }
 }
