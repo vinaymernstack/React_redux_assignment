@@ -1,46 +1,22 @@
-// Link.react.js
-import React from 'react';
+import React, { useState } from "react";
 
-const STATUS = {
-  HOVERED: 'hovered',
-  NORMAL: 'normal',
-};
 
-export default class Link extends React.Component {
-  constructor(props) {
-    super(props);
+export default function Button() {
+ const [size, changeSize] = useState("You didn't press any button yet");
 
-    this._onMouseEnter = this._onMouseEnter.bind(this);
-    this._onMouseLeave = this._onMouseLeave.bind(this);
+ return (
+   <div className="App">
+     <p id="para1" onClick={changeSize.bind(null, "big")}>
+       Make the text big
+     </p>
+     <p onClick={changeSize.bind(null, "small")}>Make the text small</p>
 
-    this.state = {
-      class: STATUS.NORMAL,
-    };
-  }
-
-  componentDidMount(){
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => response.json())
-    .then(json => console.log(json))
-  }
-
-  _onMouseEnter() {
-    this.setState({class: STATUS.HOVERED});
-  }
-
-  _onMouseLeave() {
-    this.setState({class: STATUS.NORMAL});
-  }
-
-  render() {
-    return (
-      <a
-      className={`link-item ${this.state.class}`}
-      href={this.props.page || '#'}
-      onMouseEnter={this._onMouseEnter}
-      onMouseLeave={this._onMouseLeave}>
-      {this.props.children}
-    </a>
-    );
-  }
+     <div>
+       <h3>Change the font size by pressing a button</h3>
+     </div>
+     <div id="result" className={`box ${size}`}>
+       {size}
+     </div>
+   </div>
+ );
 }

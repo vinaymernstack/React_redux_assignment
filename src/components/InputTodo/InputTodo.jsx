@@ -20,7 +20,6 @@ const InputTodo = (props) => {
 
 let mapDispatchToProps = dispatch =>{
     return {
-        // send action to add todo
         addTodo : (data)=>dispatch(todoActions.addTodo(data))
     }
 }

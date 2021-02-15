@@ -22,7 +22,6 @@ const fetch_user_failure_action = (payload)=>{
     }
 }
 
-// fetch user data api function
 const fetchUsers = ()=>{
     return (dispatch)=>{
         dispatch(fetch_user_request_action()) 
@@ -35,8 +34,7 @@ const fetchUsers = ()=>{
         })
     }
 }
-
-let usersActions = {
+ let usersActions
+export default  usersActions = {
     fetchUsers
 }
-export default usersActions

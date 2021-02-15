@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect, useDispatch, useSelector } from "react-redux";
 import UsersActions from '../../redux/actions/usersActions'
-
+import Axios from 'axios'
 
 const UsersBlock = (props) => {
-       //    sending action for getting data through useDispatch method
     const dispatchAction = useDispatch()
+    useEffect(()=>{
+        let data={
+            firstname:"vinay"
+        }
+        Axios.post("http://localhost:1405/first",data).then((res)=>{
+            console.log(res)
+        })
+    },[])
   return(
     <div>
         <div  className="mt-5">
@@ -23,9 +30,7 @@ const UsersBlock = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {/* showing users data */}
             {
-                  // getting user data by useSelector method
                 useSelector(state=>state.Users.users).map(data=>{
                     return <tr>
                         <td>{data.id}</td><td>{data.name}</td>
@@ -42,7 +47,6 @@ const UsersBlock = (props) => {
   }
 
 let mapStateToProps = state =>{
-    // getting user data from store
     return{
         usersData : state.Users.users,
         error : state.Users.error,
@@ -52,7 +56,6 @@ let mapStateToProps = state =>{
 
 let mapDispatchToProps = dispatch =>{
   return {
-    //    sending action for getting data
       fetchUserData : ()=>dispatch(UsersActions.fetchUsers())
   }
 }

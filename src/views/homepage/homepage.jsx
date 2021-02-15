@@ -8,9 +8,10 @@ const Homepage = (props) => {
   return(
     <div className="container">
         <h1 className="text-center my-4">TODO</h1>
-        <InputTodo/> {/* adding todo */}
-        <TodosList/>{/*showing todo list */}
-        <UsersBlock/>{/* showing users list through api */}
+        <InputTodo/>
+        <TodosList/>
+        
+        <UsersBlock/>
     </div>
    )
   }
